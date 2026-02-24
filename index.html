@@ -700,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startTime = Date.now();
     window.addEventListener('load', () => {
       const elapsed = Date.now() - startTime;
-      const remaining = 3000 - elapsed;
+      const remaining = 2000 - elapsed;
       setTimeout(() => {
         loader.classList.add('fade-out');
         setTimeout(() => loader.remove(), 500);
