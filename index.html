@@ -21,7 +21,12 @@
     </ul>
   </nav>
 </header>
-
+  <div id="loader">
+    <div class="loader-content">
+      <img src="img/loading.gif" alt="Loading..." />
+      <p>Loading...</p>
+    </div>
+  </div>
 <main class="gallery">
   <div class="work" id="profile">
     <img src="img/img-01.png" alt="Main Work">
@@ -434,12 +439,13 @@
 
           <div class="notes-box">
             <h3>ご依頼にあたっての確認事項</h3>
-            <ul>
-              <li><strong>返信：</strong> 原則として3営業日以内に返信いたします。</li>
-              <li><strong>稼働状況：</strong> 現在、2026年3月以降に着手する案件をお受けしております。</li>
-              <li><strong>契約：</strong> 法人様とのNDA（秘密保持契約）の締結も可能です。</li>
-              <li><strong>キャンセル：</strong> 着手後のキャンセルは、進行状況に応じた費用を申し受けます。</li>
-            </ul>
+         <ul>
+  <li><strong>返信：</strong> 原則として3営業日以内に返信いたします。</li>
+  <li><strong>稼働状況：</strong> 現在、2026年3月以降に着手する案件をお受けしております。</li>
+  <li><strong>作品：</strong> 掲載している作品の無断転載・無断使用はご遠慮いただいております。</li>
+  <li><strong>追加費用：</strong> 4回目以降の修正、または仕様から大幅に変更となる場合は、別途追加費用を申し受けます。</li>
+  <li><strong>キャンセル：</strong> 着手後のキャンセルは、進行状況に応じた費用を申し受けます。</li>
+</ul>
           </div>
         </div>
 
@@ -689,6 +695,17 @@ document.addEventListener("DOMContentLoaded", () => {
   updateHeader();
 
 });
+	     // ローダー処理
+    const loader = document.getElementById('loader');
+    const startTime = Date.now();
+    window.addEventListener('load', () => {
+      const elapsed = Date.now() - startTime;
+      const remaining = 3000 - elapsed;
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.remove(), 500);
+      }, remaining > 0 ? remaining : 0);
+    });
 </script>
 </body>
 </html>
