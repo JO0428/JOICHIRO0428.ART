@@ -34,10 +34,11 @@ display: flex;
   display: flex;
   align-items: center;
   font-family: Impact, sans-serif;
-  font-size: clamp(24px, 5vw, 60px);/* バーの高さを固定 */
-  flex: 0 0 40%; /* ヘッダーの40%の幅をタイトル用に確保する */
-  min-width: 300px; /* スマホでもこれ以上は小さくならない */
+  font-size: clamp(24px, 5vw, 60px);
+  flex: 0 0 auto; /* 幅を自動調整 */
+  min-width: 0;   /* 余計な領域を確保しない */
   height: 100%;
+  pointer-events: none; /* 余白の判定を無効化 */
 }
 /* 中の文字の設定 */
 .nav-menu {
@@ -47,12 +48,12 @@ display: flex;
 .nav-menu ul {
   display: flex;
   list-style: none;
-  gap: clamp(15px, 3vw, 80px);
+  gap: clamp(12px, 3vw, 80px);
    /* ← これが右寄せの本体 */
   align-items: center;
 	
 }
-.nav-menu a { text-decoration: none; color: black; font-weight: bold; font-size: clamp(12px, 1.2vw, 24px); }
+.nav-menu a { text-decoration: none; color: black; font-weight: bold; font-size: clamp(10px, 1.2vw, 20px); }
 
 /* =========================
    ギャラリー / プロフィール
@@ -127,7 +128,7 @@ display: flex;
 
 .tab {
   display: flex; align-items: center; gap: 10px; cursor: pointer; border: 1px solid gray;
-  width: 25%; /* 4タブの場合。5タブなら20%に変更してください */
+  width: 20%; /* 4タブの場合。5タブなら20%に変更してください */
   aspect-ratio: 4 / 1; padding: 5px 10px; background: #fff; transition: 0.2s;
 }
 
@@ -144,7 +145,9 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
 #tabcheck1:checked ~ #tabcontent1,
 #tabcheck2:checked ~ #tabcontent2,
 #tabcheck3:checked ~ #tabcontent3,
-#tabcheck4:checked ~ #tabcontent4 { display: block; }
+#tabcheck4:checked ~ #tabcontent4,
+#tabcheck5:checked ~ #tabcontent5
+{ display: block; }
 
 /* =========================
    ★ タブ2 & タブ3 のレイアウト修正
@@ -159,7 +162,8 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
 .vege-top-row,
 .vege-bottom-row,
 .ikimoji-top-row,
-.ikimoji-bottom-row {
+.ikimoji-bottom-row,
+.mojiji-top-row{
   display: flex;
   gap: 0;
   margin-bottom: 20px;
@@ -169,7 +173,8 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
 .zoo-item,
 .aho-item,
 .vege-item,
-.ikimoji-item {
+.ikimoji-item,
+ .mojiji-item{
   display: flex;
   min-width: 0;
   flex-shrink: 1;
@@ -179,7 +184,8 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
 .zoo-item img,
 .aho-item img,
 .vege-item img,
-.ikimoji-item img {
+.ikimoji-item img,
+.mojiji-item img{
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -246,9 +252,15 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
    下段サムネ（tab-duplicate）
 ========================= */
 .tab-duplicate {
-  display: flex; width: 95vw; max-width: 1300px; margin: -1px auto 0;
+  display: flex; 
+  width: 95vw; 
+  max-width: 1300px; 
+  margin: -1px auto 0;
 }
-.tab-duplicate .tab { flex: 1; border-top: 1px solid black; }
+.tab-duplicate .tab { 
+  width: 20%; /* ★ 下段も20%に設定 */
+  border-top: 1px solid black; 
+}
 
 /* --- PC版のボタン設定（サムネイルと併用可能） --- *//* =========================
    スライドショー 左右ボタン（基本デザイン）
@@ -312,53 +324,6 @@ input:checked + .tab { background: #fff; border-bottom: none; z-index: 2; }
 #tabcontent2 .nav {
   display: none;
 }
-
-/* =========================
-   スマホ版（768px以下）の調整
-========================= */
-@media (max-width: 768px) {
-  /* 全タブ共通：ボタンを表示し「側面中央」を維持 */
-  .nav {
-    display: flex !important;
-    width: 36px; /* スマホでは少し小さめに */
-    height: 36px;
-    top: 50% !important;
-    bottom: auto !important;
-    transform: translateY(-50%) !important;
-  }
-
-  .nav.prev {
-    left: 8px !important;
-    margin-left: 0 !important;
-  }
-
-  .nav.next {
-    right: 8px !important;
-    left: auto !important;
-    margin-left: 0 !important;
-  }
-
-  /* サムネは引き続き非表示 */
-  .slide-thumbs, .slide-thumbs2 {
-    display: none !important;
-  }
-  .slideshow-wrap {
-    grid-template-columns: 1fr !important;
-  }
-	.nav-menu {
-    display: none; /* ナビゲーションを完全に消す */
-  }
-
-  .header-box {
-    justify-content: center; /* タイトルを中央寄せにしたい場合はこれ（任意） */
-  }
-
-  .header-box h1 {
-    flex: 1; /* タイトルが画面幅いっぱいに使えるようにする */
-    justify-content: center; /* ロゴを中央に */
-  }
-}
-
 
 /* =========================
    IKIMOJI専用レイアウト
@@ -652,55 +617,21 @@ padding-bottom: 6px; /* ←ここを 4px〜8px の間で微調整すると完璧
   background: #000;
   margin-right: 12px;
 }
-/* =========================
-   【修正版】確認事項：行間を広げて読みやすく
-   ========================= */
-.notes-box h3 {
-  font-size: 16px;
-  font-weight: 800;
-  margin-bottom: 20px; /* 見出し下の余白を少し戻しました */
-  display: flex;
-  align-items: center;
-}
-
-.notes-box h3::before {
-  content: "";
-  width: 20px;
-  height: 2px;
-  background: #000;
-  margin-right: 12px;
-}
 
 .notes-box ul {
   list-style: none;
   padding: 0;
-  margin: 0;
   font-size: 14px;
-  /* 行間を 1.4 から 1.8 に広げました */
-  line-height: 1.8; 
+  line-height: 2;
   color: #333;
-}
-
-.notes-box li {
-  display: flex;
-  align-items: flex-start;
-  /* 項目ごとの隙間を 6px から 15px に広げました */
-  margin-bottom: 15px; 
-  padding: 0;
-}
-
-.notes-box li:last-child {
-  margin-bottom: 0;
 }
 
 .notes-box li strong {
   color: #000;
   display: inline-block;
-  /* 文字列がはみ出さない幅をキープ */
-  width: 7em; 
-  flex-shrink: 0;
-  white-space: nowrap;
+  width: 5em; /* 見出しを揃える */
 }
+
 /* 右カラム：テンプレート */
 .template-desc {
   font-size: 13px;
@@ -758,32 +689,32 @@ padding-bottom: 6px; /* ←ここを 4px〜8px の間で微調整すると完璧
 
 /* ★ここを修正：!importantを付けてゴシック体を最優先にする */
 .lead-line {
-  font-size: clamp(8px, 3vw, 22px);
+  font-size: clamp(10px, 3vw, 22px);
   line-height: 1.9;
   letter-spacing: 0.1em;
   margin-top: 50px;
 }
 
 .lead-line.emphasis {
-  font-size: clamp(8px, 3vw, 22px);
+  font-size: clamp(10px, 4vw, 22px);
   font-weight: 700;
 }
 
 .lead-line.space {
   margin-top: 50px;
-  font-size: clamp(8px, 3vw, 22px);
+  font-size: clamp(10px, 2vw, 22px);
   opacity: 1;
 }
 
 .lead-line.signature {
   margin-top: 50px;
-  font-size: clamp(8px, 3vw, 22px);
+  font-size: clamp(10px, 2vw, 22px);
   opacity: 1;
 }
 
 .lead-line.signature2 {
   margin-top: 50px;
-  font-size: clamp(8px, 3vw, 22px);
+  font-size: clamp(10px, 2vw, 22px);
   opacity: 1;
 }
 
@@ -794,6 +725,178 @@ padding-bottom: 6px; /* ←ここを 4px〜8px の間で微調整すると完璧
   color: #000;
 }
 
+.mojiji-grid {
+    display: grid !important;
+    grid-template-columns: repeat(9, 1fr) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mojiji-grid-item {
+    width: 100% !important;
+    cursor: pointer; /* クリックできることを示すポインター */
+    overflow: hidden;
+    border-radius: 0px;
+  }
+
+  .mojiji-grid-item img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    transition: transform 0.2s ease;
+  }
+
+  /* ホバー時に少し拡大 */
+  .mojiji-grid-item:hover img {
+    transform: scale(1.08);
+  }
+
+  /* --- モーダル（拡大表示）のスタイル --- */
+  .mojiji-modal {
+    display: none; /* 初期状態は非表示 */
+    position: fixed;
+    z-index: 9999; /* 画面の一番手前に表示 */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* 背景を暗く */
+    backdrop-filter: blur(5px); /* 背景をうっすらぼかす */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  /* モーダル表示時のアニメーション */
+  .mojiji-modal.show {
+    display: flex;
+    opacity: 1;
+  }
+
+  .mojiji-modal-img {
+   width: 800px !important;
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 0px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .mojiji-modal.show .mojiji-modal-img {
+    transform: scale(1);
+  }
+
+  /* 閉じるボタン (×) */
+  .mojiji-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  .mojiji-modal-close:hover {
+    color: #ff4757;
+  }
+
+.mojiji-main-video {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+  border-radius: 8px; /* 角丸にする場合（不要なら削除してください） */
+  object-fit: cover;
+}
+
+/* ナビゲーションボタン（前へ・次へ） */
+.mojiji-modal-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 32px;
+  padding: 16px 20px;
+  cursor: pointer;
+  z-index: 10001;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.mojiji-modal-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.mojiji-prev {
+  left: 20px;
+}
+
+.mojiji-next {
+  right: 20px;
+}
+
+/* ナビゲーションのアイコンサイズ調整 */
+.nav-menu .fa-brands {
+  font-size: 1.2rem; /* アイコンの大きさ */
+  transition: color 0.3s ease;
+}
+
+/* ホバー時の色変更（例：InstagramとYouTubeのブランドカラー） */
+.nav-menu a[aria-label="Instagram"]:hover {
+  color: #e1306c;
+}
+
+.nav-menu a[aria-label="YouTube"]:hover {
+  color: #ff0000;
+}
+.nav-menu {
+    display: block !important; 
+    z-index: 1001; /* H1よりも手前に表示 */
+  }
+/* =========================
+   ナビゲーション＆アイコンのクリック判定強化
+========================= */
+/* タイトル枠がナビの上に被さるのを防ぐ */
+.header-box h1 {
+  pointer-events: none;
+  width: fit-content; /* タイトル領域が横いっぱいに広がるのを防ぐ */
+}
+
+/* タイトルの文字部分だけクリック可能にする場合 */
+#site-title {
+  pointer-events: auto; /* タイトル文字部分のみクリック有効 */
+}
+
+/* --- ナビゲーション・SNSボタンの設定 --- */
+.nav-menu {
+  position: relative;
+  z-index: 1010;
+  display: block !important;
+  margin-left: auto;
+}
+
+.nav-menu a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+}
+.nav-menu a {
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
 /* =========================
    1. スマホ・タブレット専用設定 (900px以下)
 ========================= */
@@ -819,40 +922,56 @@ padding-bottom: 6px; /* ←ここを 4px〜8px の間で微調整すると完璧
     margin-bottom: 40px;
   }
 }
+/* =========================
+   スマホ版（768px以下）の調整
+========================= */
+@media (max-width: 768px) {
+  /* 全タブ共通：ボタンを表示し「側面中央」を維持 */
+  .nav {
+    display: flex !important;
+    width: 36px; /* スマホでは少し小さめに */
+    height: 36px;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
 
-/* ローダー */
-#loader {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
+  .nav.prev {
+    left: 8px !important;
+    margin-left: 0 !important;
+  }
+
+  .nav.next {
+    right: 8px !important;
+    left: auto !important;
+    margin-left: 0 !important;
+  }
+
+  /* サムネは引き続き非表示 */
+  .slide-thumbs, .slide-thumbs2 {
+    display: none !important;
+  }
+  .slideshow-wrap {
+    grid-template-columns: 1fr !important;
+  }
+	.nav-menu {
+    display: none; /* ナビゲーションを完全に消す */
+  }
+
+  .header-box {
+    justify-content: center; /* タイトルを中央寄せにしたい場合はこれ（任意） */
+  }
+
+  .header-box h1 {
+    flex: 1; /* タイトルが画面幅いっぱいに使えるようにする */
+    justify-content: center; /* ロゴを中央に */
+  }
 }
-
-
-#loader.fade-out {
-  opacity: 0;
-  pointer-events: none;
+/* グリッドの上に余白を開ける */
+.mojiji-grid-wrapper {
+  margin-bottom: 40px; /* お好みで数字（30px, 50pxなど）を変更してください */
 }
-
-.loader-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.loader-content img {
-  max-height: 400px;
-  object-fit: contain;
-}
-
-.loader-content p {
-  margin-top: 1rem;
-  font-size: 1.4rem;
-  color: #000;
-  font-family: Impact, sans-serif;
+/* メイン画像の下に余白を開ける */
+.mojiji-top-row {
+  margin-bottom: 40px; /* お好みで数字を変更してください */
 }
