@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>JOICHIRO.art | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Font Awesome の読み込みを追加 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body id="top">
@@ -18,15 +20,21 @@
   <li><a href="#profile">Profile</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#footer2">Contact</a></li>
+		<!-- アイコンボタン -->
+    <li>
+      <a href="https://www.instagram.com/joichiro0428/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/@joichiro.art0428" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <i class="fa-brands fa-youtube"></i>
+      </a>
+    </li>
     </ul>
   </nav>
 </header>
-  <div id="loader">
-    <div class="loader-content">
-      <img src="img/loading.gif" alt="Loading..." />
-      <p>Loading...</p>
-    </div>
-  </div>
+
 <main class="gallery">
   <div class="work" id="profile">
     <img src="img/img-01.png" alt="Main Work">
@@ -46,36 +54,75 @@
   </div>
 <div id="gallery-anchor"></div>
  <div class="tabbox" id="gallery">
-  <input type="radio" name="tabset" id="tabcheck1" checked>
+<!-- 1. MOJIJI（初期選択：checked を付与） -->
+  <input type="radio" name="tabset" id="tabcheck5" checked>
+  <label for="tabcheck5" class="tab">
+    <img src="img/samune5.png" loading="lazy" alt="MOJIJI" class="tab-img">
+    <span class="tab-title">MOJIJI</span>
+  </label>
+
+  <!-- 2. TIPO ZOO（checked を外す） -->
+  <input type="radio" name="tabset" id="tabcheck1">
   <label for="tabcheck1" class="tab">
-    <img src="img/samune1.png" loading="lazy" alt="ZOO" class="tab-img">
+    <img src="img/samune1.png" loading="lazy" alt="TIPO ZOO" class="tab-img">
     <span class="tab-title">TIPO ZOO</span>
   </label>
 
+  <!-- 3. AHON -->
   <input type="radio" name="tabset" id="tabcheck2">
   <label for="tabcheck2" class="tab">
-    <img src="img/samune2.png" loading="lazy" alt="AHO" class="tab-img">
+    <img src="img/samune2.png" loading="lazy" alt="AHON" class="tab-img">
     <span class="tab-title">AHON</span>
   </label>
 
+  <!-- 4. VEGETAWARS -->
   <input type="radio" name="tabset" id="tabcheck3">
   <label for="tabcheck3" class="tab">
     <img src="img/samune3.png" loading="lazy" alt="VEGETAWARS" class="tab-img">
     <span class="tab-title">VEGETAWARS</span>
   </label>
 
+  <!-- 5. IKIMOJI -->
   <input type="radio" name="tabset" id="tabcheck4">
   <label for="tabcheck4" class="tab">
-    <img src="img/samune4.png" loading="lazy" alt="COMIC" class="tab-img">
+    <img src="img/samune4.png" loading="lazy" alt="IKIMOJI" class="tab-img">
     <span class="tab-title">IKIMOJI</span>
   </label>
+	 
+<div class="tabcontent" id="tabcontent5" data-title="MOJIJI" data-desc="文字と生き物が織りなすポップアート<br>『もじじ王国』">
+  <!-- メイン画像エリア -->
+  <div class="mojiji-top-row">
+    <div class="mojiji-item wide">
+      <video 
+        src="img/mojiji-main.MOV" 
+        loop 
+        muted 
+        playsinline 
+        poster="img/mo1.png"
+        class="mojiji-main-video"
+        id="mojiji-main-video">
+        お使いのブラウザは動画タグに対応していません。
+      </video>
+    </div>
+  </div>
 
+  <!-- 117枚の画像を横9列に並べるエリア -->
+  <div class="mojiji-grid-wrapper">
+    <div class="mojiji-grid" id="mojiji-grid"></div>
+  </div>
 
+  <!-- 一番下に追加する画像エリア -->
+  <div class="mojiji-bottom-row">
+    <div class="mojiji-item">
+      <img src="img/tmojimoji.png" alt="tmojimoji" class="mojiji-footer-img" loading="lazy">
+    </div>
+  </div>
+</div>
+	
   <!-- タブコンテンツはそのまま -->
-    <div class="tabcontent" id="tabcontent1" data-title="TIPO ZOO" data-desc="日本の文字文化を世界に<br>読めても、読めなくてもいい、文字と絵が溶け合う「現代の象形文字」">
+    <div class="tabcontent" id="tabcontent1" data-title="TIPO ZOO" data-desc="日本の文字文化を世界に<br>文字と絵が溶け合う「現代の象形文字」">
       <div class="zoo-top-row">
         <div class="zoo-item wide"><img src="img/77.png" loading="lazy" alt="ZOO Wall"></div>
-      
       </div>
 
       <div class="slideshow-wrap js-slideshow">
@@ -392,7 +439,10 @@
 
 </div>
 	<div class="tab-duplicate">
-
+	  <label for="tabcheck5" class="tab">
+    <img src="img/samune5.png" loading="lazy" alt="COMIC" class="tab-img">
+    <span class="tab-title">MOJIJI</span>
+  </label>
   <label for="tabcheck1" class="tab">
     <img src="img/samune1.png" loading="lazy" alt="ZOO" class="tab-img">
     <span class="tab-title">ANIMOJI</span>
@@ -412,6 +462,7 @@
     <img src="img/samune4.png" loading="lazy" alt="COMIC" class="tab-img">
     <span class="tab-title">IKIMOJI</span>
   </label>
+		
 
 </div>
   </div>
@@ -439,13 +490,12 @@
 
           <div class="notes-box">
             <h3>ご依頼にあたっての確認事項</h3>
-         <ul>
-  <li><strong>返信：</strong> 原則として3営業日以内に返信いたします。</li>
-  <li><strong>稼働状況：</strong> 現在、2026年3月以降に着手する案件をお受けしております。</li>
-  <li><strong>作品：</strong> 掲載している作品の無断転載・無断使用はご遠慮いただいております。</li>
-  <li><strong>追加費用：</strong> 4回目以降の修正、または仕様から大幅に変更となる場合は、別途追加費用を申し受けます。</li>
-  <li><strong>キャンセル：</strong> 着手後のキャンセルは、進行状況に応じた費用を申し受けます。</li>
-</ul>
+            <ul>
+              <li><strong>返信：</strong> 原則として3営業日以内に返信いたします。</li>
+              <li><strong>稼働状況：</strong> 現在、2026年3月以降に着手する案件をお受けしております。</li>
+              <li><strong>契約：</strong> 法人様とのNDA（秘密保持契約）の締結も可能です。</li>
+              <li><strong>キャンセル：</strong> 着手後のキャンセルは、進行状況に応じた費用を申し受けます。</li>
+            </ul>
           </div>
         </div>
 
@@ -502,7 +552,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   document.querySelectorAll(".js-slideshow").forEach(slideshow => {
 
-    // スライドとサムネイル取得（左右両方をまとめる）
     const slides = Array.from(slideshow.querySelectorAll(".slide"));
     const thumbs = Array.from(slideshow.querySelectorAll(".thumb"));
     const prevBtn = slideshow.querySelector(".prev");
@@ -512,7 +561,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const intervalTime = 2000;
     let auto = null;
 
-    // スライド切替
     function update(index) {
       slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
       thumbs.forEach((thumb, i) => thumb.classList.toggle("active", i === index));
@@ -522,15 +570,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const next = () => update((current + 1) % slides.length);
     const prev = () => update((current - 1 + slides.length) % slides.length);
 
-    // 自動再生開始／停止
     const start = () => { if (!auto && slides.length > 1) auto = setInterval(next, intervalTime); };
     const stop = () => { clearInterval(auto); auto = null; };
 
-    // ボタンイベント
     if (nextBtn) nextBtn.addEventListener("click", e => { e.preventDefault(); next(); stop(); start(); });
     if (prevBtn) prevBtn.addEventListener("click", e => { e.preventDefault(); prev(); stop(); start(); });
 
-    // サムネイルクリック
     thumbs.forEach(thumb => {
       thumb.addEventListener("click", () => {
         const index = parseInt(thumb.dataset.index);
@@ -538,13 +583,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // 初期表示
     update(0);
-
-    // IntersectionObserver登録
     observer.observe(slideshow);
 
-    // スライドショーに自動再生関数を添付
     slideshow._startAuto = start;
     slideshow._stopAuto = stop;
 
@@ -572,55 +613,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     5. ナビゲーションスクロール制御
+     5. ナビゲーションスクロール制御 ＆ タイトル更新連動
   ========================= */
   document.querySelectorAll(".nav-menu a").forEach(link => {
     link.addEventListener("click", e => {
-      e.preventDefault();
       const href = link.getAttribute("href");
 
+      // 外部リンク（SNS等）はそのまま遷移
+      if (!href || !href.startsWith("#")) {
+        return; 
+      }
+
+      e.preventDefault();
+
+      const triggerHeaderUpdate = () => {
+        // スクロール完了後にタイトルの表示更新を呼び出す
+        if (typeof window.triggerUpdateHeader === "function") {
+          setTimeout(window.triggerUpdateHeader, 300);
+          setTimeout(window.triggerUpdateHeader, 600);
+        }
+      };
+
       // HOME
-      if (href === "#top") return window.scrollTo({ top: 0, behavior: "smooth" });
+      if (href === "#top") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        triggerHeaderUpdate();
+        return;
+      }
 
       // PROFILE 中央表示
       if (href === "#profile") {
         const profile = document.querySelector("#profile");
-        const rect = profile.getBoundingClientRect();
-        const center = rect.top + window.scrollY - (window.innerHeight / 5) + (profile.offsetHeight / 2);
-        return window.scrollTo({ top: center, behavior: "smooth" });
+        if (profile) {
+          const rect = profile.getBoundingClientRect();
+          const center = rect.top + window.scrollY - (window.innerHeight / 5) + (profile.offsetHeight / 2);
+          window.scrollTo({ top: center, behavior: "smooth" });
+          triggerHeaderUpdate();
+        }
+        return;
       }
 
       // GALLERY
       if (href === "#gallery") {
         const gallery = document.querySelector("#gallery");
-        const headerHeight = document.querySelector(".header-box").offsetHeight;
-        const rect = gallery.getBoundingClientRect();
-        return window.scrollTo({ top: rect.top + window.scrollY - headerHeight, behavior: "smooth" });
+        if (gallery) {
+          const headerBox = document.querySelector(".header-box");
+          const headerHeight = headerBox ? headerBox.offsetHeight : 0;
+          const rect = gallery.getBoundingClientRect();
+          window.scrollTo({ top: rect.top + window.scrollY - headerHeight, behavior: "smooth" });
+          triggerHeaderUpdate();
+        }
+        return;
       }
 
-  // FOOTER
-if (href === "#footer2") {
-  const footer = document.querySelector("#footer2");
-  const headerHeight = document.querySelector(".header-box").offsetHeight;
-  const rect = footer.getBoundingClientRect();
-
-  return window.scrollTo({
-    top: rect.top + window.scrollY - headerHeight,
-    behavior: "smooth"
-  });
-}
+      // FOOTER
+      if (href === "#footer2") {
+        const footer = document.querySelector("#footer2");
+        if (footer) {
+          const headerBox = document.querySelector(".header-box");
+          const headerHeight = headerBox ? headerBox.offsetHeight : 0;
+          const rect = footer.getBoundingClientRect();
+          window.scrollTo({ top: rect.top + window.scrollY - headerHeight, behavior: "smooth" });
+          triggerHeaderUpdate();
+        }
+        return;
+      }
 
     });
   });
 
 });
-	  
 
 
+/* =========================
+   6. ヘッダー表示切替制御
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
 
   const siteTitle = document.getElementById("site-title");
   const siteDesc  = document.getElementById("site-desc");
+
+  if (!siteTitle || !siteDesc) return;
 
   function updateHeader() {
 
@@ -632,9 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let activeSection = null;
-
     const viewportMiddle = window.innerHeight / 2;
-
     const sections = document.querySelectorAll("[data-title]");
 
     sections.forEach(section => {
@@ -644,13 +715,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const rect = section.getBoundingClientRect();
 
-      // ⭐ Safariでも安定する判定
+      // Safari対応の判定
       if (rect.top <= viewportMiddle && rect.bottom >= viewportMiddle) {
         activeSection = section;
       }
 
-      // ⭐ ページ最下部用の救済
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
+      // 最下部救済
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
         activeSection = sections[sections.length - 1];
       }
 
@@ -683,6 +754,9 @@ document.addEventListener("DOMContentLoaded", () => {
     siteDesc.style.visibility = "visible";
   }
 
+  // 他の処理から呼び出せるようにグローバル関数に登録
+  window.triggerUpdateHeader = updateHeader;
+
   window.addEventListener("scroll", updateHeader, { passive: true });
   window.addEventListener("resize", updateHeader);
 
@@ -695,17 +769,136 @@ document.addEventListener("DOMContentLoaded", () => {
   updateHeader();
 
 });
-	     // ローダー処理
-    const loader = document.getElementById('loader');
-    const startTime = Date.now();
-    window.addEventListener('load', () => {
-      const elapsed = Date.now() - startTime;
-      const remaining = 2000 - elapsed;
-      setTimeout(() => {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 500);
-      }, remaining > 0 ? remaining : 0);
-    });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("mojiji-main-video");
+
+  // 1. 動画の自動再生/停止制御 (Intersection Observer)
+  if (video) {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(error => {
+            console.log("自動再生がブロックされました:", error);
+          });
+        } else {
+          video.pause();
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(video);
+  }
+
+  // 2. グリッド画像生成＆スライド機能付きモーダル
+  const gridContainer = document.getElementById("mojiji-grid");
+  const modal = document.getElementById("mojiji-modal");
+  const modalImg = document.getElementById("mojiji-modal-img");
+  const modalClose = document.getElementById("mojiji-modal-close");
+  const btnPrev = document.getElementById("mojiji-modal-prev");
+  const btnNext = document.getElementById("mojiji-modal-next");
+
+  if (!gridContainer || !modal) return;
+
+  const totalImages = 117;
+  let currentIndex = 1; // 現在表示中の画像番号 (1 ~ 117)
+
+  // 117枚の画像をグリッド生成
+  let htmlContent = "";
+  for (let i = 1; i <= totalImages; i++) {
+    htmlContent += `<div class="mojiji-grid-item">
+      <img src="img/mo${i}.png" data-index="${i}" loading="lazy" alt="MOJIJI ${i}">
+    </div>`;
+  }
+  gridContainer.innerHTML = htmlContent;
+
+  // 指定インデックスの画像を表示更新する関数
+  function showImage(index) {
+    if (index < 1) index = totalImages; // 最初の画像の前の場合は最後へループ
+    if (index > totalImages) index = 1; // 最後の画像の次の場合は最初へループ
+
+    currentIndex = index;
+    modalImg.src = `img/mo${currentIndex}.png`;
+    modalImg.classList.remove("is-zoomed");
+  }
+
+  // 画像クリックでモーダル表示
+  gridContainer.addEventListener("click", (e) => {
+    const targetImg = e.target.closest("img");
+    if (!targetImg) return;
+
+    const index = parseInt(targetImg.dataset.index, 10);
+    showImage(index);
+
+    modal.classList.add("show");
+    modal.scrollTop = 0;
+  });
+
+  // 前へ / 次へ ボタンイベント
+  if (btnPrev) {
+    btnPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showImage(currentIndex - 1);
+    });
+  }
+
+  if (btnNext) {
+    btnNext.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showImage(currentIndex + 1);
+    });
+  }
+
+  // モーダル画像クリックで拡大ズーム切替
+  modalImg.addEventListener("click", (e) => {
+    e.stopPropagation();
+    modalImg.classList.toggle("is-zoomed");
+  });
+
+  // 閉じる処理
+  function closeModal() {
+    modal.classList.remove("show");
+    setTimeout(() => {
+      modalImg.src = "";
+      modalImg.classList.remove("is-zoomed");
+    }, 200);
+  }
+
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal || e.target.classList.contains("mojiji-modal-content")) {
+      closeModal();
+    }
+  });
+
+  // キーボード操作（Escで閉じる、左右キーで画像切り替え）
+  document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("show")) return;
+
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (e.key === "ArrowRight") showImage(currentIndex + 1);
+  });
+});
+</script>
+	<!-- 拡大表示（モーダル）用のHTML構造 -->
+<div class="mojiji-modal" id="mojiji-modal">
+  <span class="mojiji-modal-close" id="mojiji-modal-close">&times;</span>
+ <!-- 前へ / 次へ ボタン -->
+  <button class="mojiji-modal-nav mojiji-prev" id="mojiji-modal-prev">&#10094;</button>
+  <button class="mojiji-modal-nav mojiji-next" id="mojiji-modal-next">&#10095;</button>
+
+  <div class="mojiji-modal-content">
+    <img class="mojiji-modal-img" id="mojiji-modal-img" src="" alt="Enlarged Image">
+  </div>
+</div>
 </body>
 </html>
